@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace></RootNamespace>
+        <AssemblyName>Net40.System.Private.CoreLib</AssemblyName>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>11</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Microsoft.IO\StringExtensions.cs" />
+        <Compile Include="Net40.System.Private.CoreLib.Resources\Strings.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="SequenceReaderHelper\BinaryPrimitivesNet.cs" />
+        <Compile Include="SequenceReaderHelper\BitConverterNet.cs" />
+        <Compile Include="System.Buffers.Binary\BinaryPrimitives.cs" />
+        <Compile Include="System.Buffers.Text\Base64.cs" />
+        <Compile Include="System.Buffers.Text\FormattingHelpers.cs" />
+        <Compile Include="System.Buffers.Text\ParserHelpers.cs" />
+        <Compile Include="System.Buffers.Text\Utf8Constants.cs" />
+        <Compile Include="System.Buffers.Text\Utf8Formatter.cs" />
+        <Compile Include="System.Buffers.Text\Utf8Parser.cs" />
+        <Compile Include="System.Buffers\ArrayMemoryPool.cs" />
+        <Compile Include="System.Buffers\ArrayPool.cs" />
+        <Compile Include="System.Buffers\ArrayPoolEventSource.cs" />
+        <Compile Include="System.Buffers\BuffersExtensions.cs" />
+        <Compile Include="System.Buffers\DefaultArrayPool.cs" />
+        <Compile Include="System.Buffers\IBufferWriter.cs" />
+        <Compile Include="System.Buffers\IMemoryOwner.cs" />
+        <Compile Include="System.Buffers\IPinnable.cs" />
+        <Compile Include="System.Buffers\MemoryHandle.cs" />
+        <Compile Include="System.Buffers\MemoryManager.cs" />
+        <Compile Include="System.Buffers\MemoryPool.cs" />
+        <Compile Include="System.Buffers\OperationStatus.cs" />
+        <Compile Include="System.Buffers\ReadOnlySequence.cs" />
+        <Compile Include="System.Buffers\ReadOnlySequenceDebugView.cs" />
+        <Compile Include="System.Buffers\ReadOnlySequenceSegment.cs" />
+        <Compile Include="System.Buffers\SequenceReader.cs" />
+        <Compile Include="System.Buffers\SequenceReaderExtensions.cs" />
+        <Compile Include="System.Buffers\StandardFormat.cs" />
+        <Compile Include="System.Buffers\Utilities.cs" />
+        <Compile Include="System.Collections.Generic\ValueListBuilder.cs" />
+        <Compile Include="System.Diagnostics.CodeAnalysis\DisallowNullAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tests\InteropEx.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ActivityTracker.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ArrayTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ConcurrentSet.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ConcurrentSetItem.cs" />
+        <Compile Include="System.Diagnostics.Tracing\DataCollector.cs" />
+        <Compile Include="System.Diagnostics.Tracing\DateTimeOffsetTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\DateTimeTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\DecimalTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EmptyStruct.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EnumerableTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventActivityOptions.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventChannel.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventCommand.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventCommandEventArgs.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventDataAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventDescriptor.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventDispatcher.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventFieldAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventFieldFormat.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventFieldTags.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventIgnoreAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventKeywords.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventLevel.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventListener.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventManifestOptions.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventOpcode.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventPayload.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventProviderType.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventSource.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventSourceAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventSourceCreatedEventArgs.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventSourceException.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventSourceSettings.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventTags.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventTask.cs" />
+        <Compile Include="System.Diagnostics.Tracing\EventWrittenEventArgs.cs" />
+        <Compile Include="System.Diagnostics.Tracing\FieldMetadata.cs" />
+        <Compile Include="System.Diagnostics.Tracing\InvokeTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ManifestBuilder.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ManifestEnvelope.cs" />
+        <Compile Include="System.Diagnostics.Tracing\NameInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\NonEventAttribute.cs" />
+        <Compile Include="System.Diagnostics.Tracing\NullableTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\NullTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\PropertyAnalysis.cs" />
+        <Compile Include="System.Diagnostics.Tracing\PropertyValue.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ScalarArrayTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\ScalarTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\SessionMask.cs" />
+        <Compile Include="System.Diagnostics.Tracing\Statics.cs" />
+        <Compile Include="System.Diagnostics.Tracing\StringTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TimeSpanTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TraceLoggingDataCollector.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TraceLoggingDataType.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TraceLoggingEventTypes.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TraceLoggingMetadataCollector.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TraceLoggingTypeInfo.cs" />
+        <Compile Include="System.Diagnostics.Tracing\TypeAnalysis.cs" />
+        <Compile Include="System.Diagnostics\StackTraceHiddenAttribute.cs" />
+        <Compile Include="System.IO.Compression\CompressionLevel.cs" />
+        <Compile Include="System.IO\Error.cs" />
+        <Compile Include="System.IO\MemoryStreamEx.cs" />
+        <Compile Include="System.IO\StreamEx.cs" />
+        <Compile Include="System.IO\StreamHelpers.cs" />
+        <Compile Include="System.Net.Sockets\SocketTaskExtensions.cs" />
+        <Compile Include="System.Numerics.Hashing\HashHelpers.cs" />
+        <Compile Include="System.Numerics\BitOperations.cs" />
+        <Compile Include="System.Numerics\ConstantHelper.cs" />
+        <Compile Include="System.Numerics\Register.cs" />
+        <Compile Include="System.Numerics\Vector.cs" />
+        <Compile Include="System.Reflection\AssemblyMetadataAttribute.cs" />
+        <Compile Include="System.Resources\FastResourceComparer.cs" />
+        <Compile Include="System.Resources\ResourceLocator.cs" />
+        <Compile Include="System.Resources\ResourceSet.cs" />
+        <Compile Include="System.Resources\ResourceTypeCode.cs" />
+        <Compile Include="System.Runtime.CompilerServices\IntrinsicAttribute.cs" />
+        <Compile Include="System.Runtime.CompilerServices\TupleElementNamesAttribute.cs" />
+        <Compile Include="System.Runtime.CompilerServices\Unsafe.cs" />
+        <Compile Include="System.Runtime.InteropServices\MemoryMarshal.cs" />
+        <Compile Include="System.Runtime.InteropServices\SequenceMarshal.cs" />
+        <Compile Include="System.Text\DecoderEx.cs" />
+        <Compile Include="System.Text\EncoderEx.cs" />
+        <Compile Include="System.Threading\AsyncLocal.cs" />
+        <Compile Include="System.Threading\AsyncLocalValueChangedArgs.cs" />
+        <Compile Include="System.Threading\AsyncLocalValueMap.cs" />
+        <Compile Include="System.Threading\ExecutionContextEx.cs" />
+        <Compile Include="System.Threading\IAsyncLocal.cs" />
+        <Compile Include="System.Threading\IAsyncLocalValueMap.cs" />
+        <Compile Include="System\AppContext.cs" />
+        <Compile Include="System\BufferEx.cs" />
+        <Compile Include="System\DecimalDecCalc.cs" />
+        <Compile Include="System\EventSourceAttribute.cs" />
+        <Compile Include="System\ExceptionArgument.cs" />
+        <Compile Include="System\ExceptionResource.cs" />
+        <Compile Include="System\HexConverter.cs" />
+        <Compile Include="System\ITupleInternal.cs" />
+        <Compile Include="System\MathF.cs" />
+        <Compile Include="System\Memory.cs" />
+        <Compile Include="System\MemoryDebugView.cs" />
+        <Compile Include="System\MemoryExtensions.cs" />
+        <Compile Include="System\MutableDecimal.cs" />
+        <Compile Include="System\NUInt.cs" />
+        <Compile Include="System\Number.cs" />
+        <Compile Include="System\NumberBuffer.cs" />
+        <Compile Include="System\Pinnable.cs" />
+        <Compile Include="System\ReadOnlyMemory.cs" />
+        <Compile Include="System\ReadOnlySpan.cs" />
+        <Compile Include="System\SequencePosition.cs" />
+        <Compile Include="System\Span.cs" />
+        <Compile Include="System\SpanDebugView.cs" />
+        <Compile Include="System\SpanHelpers.cs" />
+        <Compile Include="System\SR.cs" />
+        <Compile Include="System\StringSpanEx.cs" />
+        <Compile Include="System\ThrowHelper.cs" />
+        <Compile Include="System\TupleExtensions.cs" />
+        <Compile Include="System\ValueTuple.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Net40.System.Private.CoreLib.Resources.Strings.resx" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Net40.Theraot.Core\src\Net40.Theraot.Core\Net40.Theraot.Core.csproj">
+        <Project>{868d7589-87b6-47ad-8cc6-e4f856199ff2}</Project>
+        <Name>Net40.Theraot.Core</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

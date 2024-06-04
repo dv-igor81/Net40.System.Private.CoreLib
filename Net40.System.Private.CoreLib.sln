@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dependencies", "dependencies", "{9E5BFBD4-AEF8-45F8-B3ED-FE0EBA079FC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F55EBDD2-4749-4847-8EE3-88B0D54B948C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net40.System.Private.CoreLib", "src\Net40.System.Private.CoreLib\Net40.System.Private.CoreLib.csproj", "{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net40.Theraot.Core", "..\Net40.Theraot.Core\src\Net40.Theraot.Core\Net40.Theraot.Core.csproj", "{868D7589-87B6-47AD-8CC6-E4F856199FF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BE8AC03-9637-4BE1-8552-086BE1BDE21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868D7589-87B6-47AD-8CC6-E4F856199FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868D7589-87B6-47AD-8CC6-E4F856199FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868D7589-87B6-47AD-8CC6-E4F856199FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868D7589-87B6-47AD-8CC6-E4F856199FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BE8AC03-9637-4BE1-8552-086BE1BDE21A} = {F55EBDD2-4749-4847-8EE3-88B0D54B948C}
+		{868D7589-87B6-47AD-8CC6-E4F856199FF2} = {9E5BFBD4-AEF8-45F8-B3ED-FE0EBA079FC7}
+	EndGlobalSection
+EndGlobal
