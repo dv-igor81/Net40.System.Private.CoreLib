@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{C0E64CC2-926E-4DD4-A778-41153127C317}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace></RootNamespace>
+        <AssemblyName>Net40.System.Net.Primitives</AssemblyName>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>11</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Net40.FxResources.System.Net.Primitives\Strings.cs" />
+        <Compile Include="Interop.cs" />
+        <Compile Include="Microsoft.Win32.SafeHandles\SafeLocalAllocHandle.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="System.Net.Cache\RequestCacheLevel.cs" />
+        <Compile Include="System.Net.Cache\RequestCachePolicy.cs" />
+        <Compile Include="System.Net.NetworkInformation\HostInformation.cs" />
+        <Compile Include="System.Net.NetworkInformation\HostInformationPal.cs" />
+        <Compile Include="System.Net.NetworkInformation\InterfaceInfoPal.cs" />
+        <Compile Include="System.Net.NetworkInformation\IPAddressCollection.cs" />
+        <Compile Include="System.Net.Security\AuthenticationLevel.cs" />
+        <Compile Include="System.Net.Security\SslPolicyErrors.cs" />
+        <Compile Include="System.Net.Sockets\AddressFamily.cs" />
+        <Compile Include="System.Net.Sockets\SocketError.cs" />
+        <Compile Include="System.Net.Sockets\SocketException.cs" />
+        <Compile Include="System.Net\AuthenticationSchemes.cs" />
+        <Compile Include="System.Net\ByteOrder.cs" />
+        <Compile Include="System.Net\Cookie.cs" />
+        <Compile Include="System.Net\CookieCollection.cs" />
+        <Compile Include="System.Net\CookieComparer.cs" />
+        <Compile Include="System.Net\CookieContainer.cs" />
+        <Compile Include="System.Net\CookieException.cs" />
+        <Compile Include="System.Net\CookieParser.cs" />
+        <Compile Include="System.Net\CookieToken.cs" />
+        <Compile Include="System.Net\CookieTokenizer.cs" />
+        <Compile Include="System.Net\CookieVariant.cs" />
+        <Compile Include="System.Net\CredentialCache.cs" />
+        <Compile Include="System.Net\CredentialHostKey.cs" />
+        <Compile Include="System.Net\CredentialKey.cs" />
+        <Compile Include="System.Net\DecompressionMethods.cs" />
+        <Compile Include="System.Net\DnsEndPoint.cs" />
+        <Compile Include="System.Net\EndPoint.cs" />
+        <Compile Include="System.Net\HeaderVariantInfo.cs" />
+        <Compile Include="System.Net\HttpStatusCode.cs" />
+        <Compile Include="System.Net\HttpVersion.cs" />
+        <Compile Include="System.Net\ICredentials.cs" />
+        <Compile Include="System.Net\ICredentialsByHost.cs" />
+        <Compile Include="System.Net\IPAddress.cs" />
+        <Compile Include="System.Net\IPAddressParser.cs" />
+        <Compile Include="System.Net\IPEndPoint.cs" />
+        <Compile Include="System.Net\IWebProxy.cs" />
+        <Compile Include="System.Net\NetEventSource.cs" />
+        <Compile Include="System.Net\NetworkCredential.cs" />
+        <Compile Include="System.Net\PathList.cs" />
+        <Compile Include="System.Net\SocketAddress.cs" />
+        <Compile Include="System.Net\SocketAddressPal.cs" />
+        <Compile Include="System.Net\SystemNetworkCredential.cs" />
+        <Compile Include="System.Net\TcpValidationHelpers.cs" />
+        <Compile Include="System.Net\TransportContext.cs" />
+        <Compile Include="System.Security.Authentication.ExtendedProtection\ChannelBinding.cs" />
+        <Compile Include="System.Security.Authentication.ExtendedProtection\ChannelBindingKind.cs" />
+        <Compile Include="System.Security.Authentication\CipherAlgorithmType.cs" />
+        <Compile Include="System.Security.Authentication\ExchangeAlgorithmType.cs" />
+        <Compile Include="System.Security.Authentication\HashAlgorithmType.cs" />
+        <Compile Include="System.Security.Authentication\SslProtocols.cs" />
+        <Compile Include="System.Text\StringBuilderCache.cs" />
+        <Compile Include="System\IPv4AddressHelper.cs" />
+        <Compile Include="System\IPv6AddressHelper.cs" />
+        <Compile Include="System\Marvin.cs" />
+        <Compile Include="System\NotImplemented.cs" />
+        <Compile Include="System\SR.cs" />
+        <Compile Include="System\StringExtensions.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Net40.FxResources.System.Net.Primitives.Strings.resx" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Net40.System.Private.CoreLib\src\Net40.System.Private.CoreLib\Net40.System.Private.CoreLib.csproj">
+        <Project>{0be8ac03-9637-4be1-8552-086be1bde21a}</Project>
+        <Name>Net40.System.Private.CoreLib</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\..\..\Net40.Theraot.Core\src\Net40.Theraot.Core\Net40.Theraot.Core.csproj">
+        <Project>{868d7589-87b6-47ad-8cc6-e4f856199ff2}</Project>
+        <Name>Net40.Theraot.Core</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

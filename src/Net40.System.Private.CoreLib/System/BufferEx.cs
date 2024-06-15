@@ -10,7 +10,7 @@ public static class BufferEx
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 	[CLSCompliant(false)]
-	public unsafe static void MemoryCopy(void* source, void* destination, long destinationSizeInBytes, long sourceBytesToCopy)
+	public static unsafe void MemoryCopy(void* source, void* destination, long destinationSizeInBytes, long sourceBytesToCopy)
 	{
 		if (sourceBytesToCopy > destinationSizeInBytes)
 		{
@@ -19,7 +19,7 @@ public static class BufferEx
 		Memmove((byte*)destination, (byte*)source, checked((uint)sourceBytesToCopy));
 	}
 
-	public unsafe static void Memmove(byte* dest, byte* src, uint len)
+	public static unsafe void Memmove(byte* dest, byte* src, uint len)
 	{
 		byte* ptr = src + len;
 		byte* ptr2 = dest + len;

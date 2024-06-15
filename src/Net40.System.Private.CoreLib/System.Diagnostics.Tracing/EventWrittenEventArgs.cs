@@ -54,7 +54,7 @@ public class EventWrittenEventArgs : EventArgs
 			Guid activityId = m_activityId;
 			if (activityId == Guid.Empty)
 			{
-				activityId = System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId;
+				//activityId = System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId;
 			}
 			return activityId;
 		}

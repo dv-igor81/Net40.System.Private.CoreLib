@@ -331,7 +331,7 @@ public static class SR
 	{
 		Lock = new object();
 		_resourceManagerInited = false;
-		_sResourceManager ??= new ResourceManager(typeof(Strings));
+		_sResourceManager ??= new ResourceManager(typeof(global::Net40.System.Private.CoreLib.Resources.Strings));
 		ErrorMessage = "Бесконечная рекурсия во время поиска ресурсов в Net40.System.Private.CoreLib. Это может быть ошибка в Net40.System.Private.CoreLib или, возможно, в определенных точках расширения, таких как события разрешения сборки или имена CultureInfo";
 	}
 
@@ -341,7 +341,7 @@ public static class SR
 		return false;
 	}
 
-	private static string GetResourceString(string resourceKey)
+	public static string GetResourceString(string resourceKey)
 	{
 		return GetResourceString(resourceKey, null);
 	}

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{FBF58EF3-0667-4B4E-83D2-7F6316B82F5F}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace></RootNamespace>
+        <AssemblyName>Net40.System.Text.Json</AssemblyName>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>11</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="System.Buffers.Text\SequenceValidity.cs" />
+        <Compile Include="System.Buffers\ArrayBufferWriter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultArrayConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultDerivedDictionaryConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultDerivedEnumerableConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultEnumerableConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultICollectionConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultIDictionaryConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultImmutableDictionaryConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\DefaultImmutableEnumerableConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\EnumConverterOptions.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterBoolean.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterByte.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterByteArray.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterChar.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterDateTime.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterDateTimeOffset.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterDecimal.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterDouble.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterEnum.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterGuid.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterInt16.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterInt32.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterInt64.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterJsonElement.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterObject.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterSByte.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterSingle.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterString.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterUInt16.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterUInt32.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterUInt64.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonConverterUri.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonDictionaryConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonEnumerableConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonEnumerableT.cs" />
+        <Compile Include="System.Text.Json.Serialization.Converters\JsonKeyValuePairConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization\ConverterList.cs" />
+        <Compile Include="System.Text.Json.Serialization\ExtensionDataWriteStatus.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonAttribute.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonConverter.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonConverterAttribute.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonConverterFactory.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonExtensionDataAttribute.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonIgnoreAttribute.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonPropertyInfoNotNullableContravariant.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonPropertyNameAttribute.cs" />
+        <Compile Include="System.Text.Json.Serialization\JsonStringEnumConverter.cs" />
+        <Compile Include="System.Text.Json\BitStack.cs" />
+        <Compile Include="System.Text.Json\ClassType.cs" />
+        <Compile Include="System.Text.Json\ConsumeNumberResult.cs" />
+        <Compile Include="System.Text.Json\ConsumeTokenResult.cs" />
+        <Compile Include="System.Text.Json\DataType.cs" />
+        <Compile Include="System.Text.Json\ExceptionResource.cs" />
+        <Compile Include="System.Text.Json\ImmutableCollectionCreator.cs" />
+        <Compile Include="System.Text.Json\ImmutableDictionaryCreator.cs" />
+        <Compile Include="System.Text.Json\ImmutableEnumerableCreator.cs" />
+        <Compile Include="System.Text.Json\JsonCamelCaseNamingPolicy.cs" />
+        <Compile Include="System.Text.Json\JsonClassInfo.cs" />
+        <Compile Include="System.Text.Json\JsonCommentHandling.cs" />
+        <Compile Include="System.Text.Json\JsonConstants.cs" />
+        <Compile Include="System.Text.Json\JsonDefaultNamingPolicy.cs" />
+        <Compile Include="System.Text.Json\JsonDocument.cs" />
+        <Compile Include="System.Text.Json\JsonDocumentOptions.cs" />
+        <Compile Include="System.Text.Json\JsonElement.cs" />
+        <Compile Include="System.Text.Json\JsonEncodedText.cs" />
+        <Compile Include="System.Text.Json\JsonException.cs" />
+        <Compile Include="System.Text.Json\JsonHelpers.cs" />
+        <Compile Include="System.Text.Json\JsonNamingPolicy.cs" />
+        <Compile Include="System.Text.Json\JsonProperty.cs" />
+        <Compile Include="System.Text.Json\JsonPropertyInfo.cs" />
+        <Compile Include="System.Text.Json\JsonPropertyInfoCommon.cs" />
+        <Compile Include="System.Text.Json\JsonPropertyInfoNotNullable.cs" />
+        <Compile Include="System.Text.Json\JsonPropertyInfoNullable.cs" />
+        <Compile Include="System.Text.Json\JsonReaderException.cs" />
+        <Compile Include="System.Text.Json\JsonReaderHelper.cs" />
+        <Compile Include="System.Text.Json\JsonReaderOptions.cs" />
+        <Compile Include="System.Text.Json\JsonReaderState.cs" />
+        <Compile Include="System.Text.Json\JsonSerializer.cs" />
+        <Compile Include="System.Text.Json\JsonSerializerOptions.cs" />
+        <Compile Include="System.Text.Json\JsonTokenType.cs" />
+        <Compile Include="System.Text.Json\JsonValueKind.cs" />
+        <Compile Include="System.Text.Json\JsonWriterHelper.cs" />
+        <Compile Include="System.Text.Json\JsonWriterOptions.cs" />
+        <Compile Include="System.Text.Json\MemberAccessor.cs" />
+        <Compile Include="System.Text.Json\NumericType.cs" />
+        <Compile Include="System.Text.Json\PooledByteBufferWriter.cs" />
+        <Compile Include="System.Text.Json\PropertyRef.cs" />
+        <Compile Include="System.Text.Json\ReadStack.cs" />
+        <Compile Include="System.Text.Json\ReadStackFrame.cs" />
+        <Compile Include="System.Text.Json\ReflectionMemberAccessor.cs" />
+        <Compile Include="System.Text.Json\ThrowHelper.cs" />
+        <Compile Include="System.Text.Json\UnsafeEx.cs" />
+        <Compile Include="System.Text.Json\Utf8JsonReader.cs" />
+        <Compile Include="System.Text.Json\Utf8JsonWriter.cs" />
+        <Compile Include="System.Text.Json\WriteStack.cs" />
+        <Compile Include="System.Text.Json\WriteStackFrame.cs" />
+        <Compile Include="System\SR.cs" />
+        <Compile Include="System\Strings.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Net40.System.Private.CoreLib\src\Net40.System.Runtime.CompilerServices.Unsafe\Net40.System.Runtime.CompilerServices.Unsafe.csproj">
+        <Project>{cda957a4-cd1b-4f46-a878-63db84d1c4ad}</Project>
+        <Name>Net40.System.Runtime.CompilerServices.Unsafe</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\..\..\Net40.Theraot.Core\src\Net40.Theraot.Core\Net40.Theraot.Core.csproj">
+        <Project>{868d7589-87b6-47ad-8cc6-e4f856199ff2}</Project>
+        <Name>Net40.Theraot.Core</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Net40.System.Private.CoreLib\Net40.System.Private.CoreLib.csproj">
+        <Project>{0be8ac03-9637-4be1-8552-086be1bde21a}</Project>
+        <Name>Net40.System.Private.CoreLib</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Net40.System.Text.Encodings.Web\Net40.System.Text.Encodings.Web.csproj">
+        <Project>{3de8e23f-bf0e-48a8-b4da-5d656a74187c}</Project>
+        <Name>Net40.System.Text.Encodings.Web</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

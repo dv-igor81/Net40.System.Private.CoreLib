@@ -17,7 +17,7 @@ public readonly struct ReadOnlySequence<T>
 		private ReadOnlyMemory<T> _currentMemory;
 
 		public ReadOnlyMemory<T> Current => _currentMemory;
-
+		
 		public Enumerator(in ReadOnlySequence<T> sequence)
 		{
 			_currentMemory = default(ReadOnlyMemory<T>);
@@ -49,6 +49,8 @@ public readonly struct ReadOnlySequence<T>
 	private readonly SequencePosition _sequenceEnd;
 
 	public static readonly ReadOnlySequence<T> Empty = new ReadOnlySequence<T>(SpanHelpers.PerTypeValues<T>.EmptyArray);
+	
+	public ReadOnlySpan<T> FirstSpan => this.GetFirstSpan();
 
 	public long Length => GetLength();
 

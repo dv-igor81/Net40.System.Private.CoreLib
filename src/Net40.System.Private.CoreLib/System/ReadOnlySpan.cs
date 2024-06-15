@@ -145,9 +145,13 @@ public struct ReadOnlySpan<T>
 		_pinnable = Unsafe.As<Pinnable<T>>(array);
 		_byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
 	}
+	
+	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+	public unsafe ReadOnlySpan(ref T reference, int length) : this(Unsafe.AsPointer(ref reference), length)
+	{
+	}
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-	[CLSCompliant(false)]
 	public unsafe ReadOnlySpan(void* pointer, int length)
 	{
 		if (SpanHelpers.IsReferenceOrContainsReferences<T>())
@@ -219,7 +223,7 @@ public struct ReadOnlySpan<T>
 		return false;
 	}
 
-	public unsafe override string ToString()
+	public override unsafe string ToString()
 	{
 		if (typeof(T) == typeof(char))
 		{

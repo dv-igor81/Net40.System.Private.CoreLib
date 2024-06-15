@@ -1,13 +1,12 @@
 using System.Buffers.Binary;
 using System.Runtime.CompilerServices;
-using SequenceReaderHelper;
 
 namespace System.Buffers;
 
 public static class SequenceReaderExtensions
 {
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-	private unsafe static bool TryCopyTo<T>(this ref SequenceReader<byte> reader, ref Span<byte> dest) where T : unmanaged
+	private static unsafe bool TryCopyTo<T>(this ref SequenceReader<byte> reader, ref Span<byte> dest) where T : unmanaged
 	{
 		if (reader.Length < sizeof(T))
 		{
@@ -38,7 +37,7 @@ public static class SequenceReaderExtensions
 		return passed;
 	}
 
-	public unsafe static bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out short value)
+	public static unsafe bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out short value)
 	{
 		short temp = 0;
 		Span<byte> buffer = new Span<byte>(&temp, 2);
@@ -52,7 +51,7 @@ public static class SequenceReaderExtensions
 		return true;
 	}
 
-	public unsafe static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out short value)
+	public static unsafe bool TryReadBigEndian(this ref SequenceReader<byte> reader, out short value)
 	{
 		short temp = 0;
 		Span<byte> buffer = new Span<byte>(&temp, 2);
@@ -82,7 +81,7 @@ public static class SequenceReaderExtensions
 		return passed;
 	}
 
-	public unsafe static bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out int value)
+	public static unsafe bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out int value)
 	{
 		int temp = 0;
 		Span<byte> buffer = new Span<byte>(&temp, 4);
@@ -96,7 +95,7 @@ public static class SequenceReaderExtensions
 		return true;
 	}
 
-	public unsafe static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out int value)
+	public static unsafe bool TryReadBigEndian(this ref SequenceReader<byte> reader, out int value)
 	{
 		int temp = 0;
 		Span<byte> buffer = new Span<byte>(&temp, 4);
@@ -126,7 +125,7 @@ public static class SequenceReaderExtensions
 		return passed;
 	}
 
-	public unsafe static bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out long value)
+	public static unsafe bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out long value)
 	{
 		long temp = 0L;
 		Span<byte> buffer = new Span<byte>(&temp, 8);
@@ -140,7 +139,7 @@ public static class SequenceReaderExtensions
 		return true;
 	}
 
-	public unsafe static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out long value)
+	public static unsafe bool TryReadBigEndian(this ref SequenceReader<byte> reader, out long value)
 	{
 		long temp = 0L;
 		Span<byte> buffer = new Span<byte>(&temp, 8);
@@ -154,7 +153,7 @@ public static class SequenceReaderExtensions
 		return true;
 	}
 
-	public unsafe static bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out float value)
+	public static unsafe bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out float value)
 	{
 		float temp = 0f;
 		Span<byte> buffer = new Span<byte>(&temp, 4);
@@ -164,11 +163,11 @@ public static class SequenceReaderExtensions
 			return false;
 		}
 		reader.Advance(4L);
-		value = BinaryPrimitivesNet.ReadSingleLittleEndian(buffer);
+		value = BinaryPrimitivesEx.ReadSingleLittleEndian(buffer);
 		return true;
 	}
 
-	public unsafe static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out float value)
+	public static unsafe bool TryReadBigEndian(this ref SequenceReader<byte> reader, out float value)
 	{
 		float temp = 0f;
 		Span<byte> buffer = new Span<byte>(&temp, 4);
@@ -178,11 +177,11 @@ public static class SequenceReaderExtensions
 			return false;
 		}
 		reader.Advance(4L);
-		value = BinaryPrimitivesNet.ReadSingleBigEndian(buffer);
+		value = BinaryPrimitivesEx.ReadSingleBigEndian(buffer);
 		return true;
 	}
 
-	public unsafe static bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out double value)
+	public static unsafe bool TryReadLittleEndian(this ref SequenceReader<byte> reader, out double value)
 	{
 		double temp = 0.0;
 		Span<byte> buffer = new Span<byte>(&temp, 8);
@@ -192,11 +191,11 @@ public static class SequenceReaderExtensions
 			return false;
 		}
 		reader.Advance(4L);
-		value = BinaryPrimitivesNet.ReadDoubleLittleEndian(buffer);
+		value = BinaryPrimitivesEx.ReadDoubleLittleEndian(buffer);
 		return true;
 	}
 
-	public unsafe static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out double value)
+	public static unsafe bool TryReadBigEndian(this ref SequenceReader<byte> reader, out double value)
 	{
 		double temp = 0.0;
 		Span<byte> buffer = new Span<byte>(&temp, 8);
@@ -206,7 +205,7 @@ public static class SequenceReaderExtensions
 			return false;
 		}
 		reader.Advance(4L);
-		value = BinaryPrimitivesNet.ReadDoubleBigEndian(buffer);
+		value = BinaryPrimitivesEx.ReadDoubleBigEndian(buffer);
 		return true;
 	}
 
@@ -214,5 +213,10 @@ public static class SequenceReaderExtensions
 	{
 		first = sequence.First.Span;
 		next = sequence.GetPosition(first.Length);
+	}
+	
+	public static ReadOnlySpan<T> GetFirstSpan<T>(this ReadOnlySequence<T> sequence)
+	{
+		return sequence.First.Span;
 	}
 }

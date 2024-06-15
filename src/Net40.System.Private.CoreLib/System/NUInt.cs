@@ -4,7 +4,7 @@ namespace System;
 
 internal struct NUInt
 {
-	private unsafe readonly void* _value;
+	private readonly unsafe void* _value;
 
 	private unsafe NUInt(uint value)
 	{
@@ -21,7 +21,7 @@ internal struct NUInt
 		return new NUInt(value);
 	}
 
-	public unsafe static implicit operator IntPtr(NUInt value)
+	public static unsafe implicit operator IntPtr(NUInt value)
 	{
 		return (IntPtr)value._value;
 	}
@@ -31,13 +31,13 @@ internal struct NUInt
 		return new NUInt((uint)value);
 	}
 
-	public unsafe static explicit operator void*(NUInt value)
+	public static unsafe explicit operator void*(NUInt value)
 	{
 		return value._value;
 	}
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-	public unsafe static NUInt operator *(NUInt left, NUInt right)
+	public static unsafe NUInt operator *(NUInt left, NUInt right)
 	{
 		if (sizeof(IntPtr) != 4)
 		{

@@ -7,14 +7,6 @@ namespace System.IO;
 
 public static class StreamEx
 {
-    // public static Task CopyToAsync(this Stream selfStream, Stream destination, int bufferSize,
-    //     CancellationToken cancellationToken)
-    // {
-    //     StreamHelpers.ValidateCopyToArgs(selfStream, destination, bufferSize);
-    //
-    //     return CopyToAsyncInternal(selfStream, destination, bufferSize, cancellationToken);
-    // }
-
     private static async Task CopyToAsyncInternal(this Stream selfStream, Stream destination, int bufferSize,
         CancellationToken cancellationToken)
     {

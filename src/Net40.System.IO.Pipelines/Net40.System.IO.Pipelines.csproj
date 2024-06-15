@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{8989574A-B425-4D9A-AD08-E1104E05614E}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace></RootNamespace>
+        <AssemblyName>Net40.System.IO.Pipelines</AssemblyName>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>11</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Net40.System.IO.Pipelines.Resources\Strings.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="System.IO.Pipelines\BufferSegment.cs" />
+        <Compile Include="System.IO.Pipelines\BufferSegmentStack.cs" />
+        <Compile Include="System.IO.Pipelines\CompletionData.cs" />
+        <Compile Include="System.IO.Pipelines\ExceptionArgument.cs" />
+        <Compile Include="System.IO.Pipelines\FlushResult.cs" />
+        <Compile Include="System.IO.Pipelines\IDuplexPipe.cs" />
+        <Compile Include="System.IO.Pipelines\InlineScheduler.cs" />
+        <Compile Include="System.IO.Pipelines\Pipe.cs" />
+        <Compile Include="System.IO.Pipelines\PipeAwaitable.cs" />
+        <Compile Include="System.IO.Pipelines\PipeCompletion.cs" />
+        <Compile Include="System.IO.Pipelines\PipeCompletionCallback.cs" />
+        <Compile Include="System.IO.Pipelines\PipeCompletionCallbacks.cs" />
+        <Compile Include="System.IO.Pipelines\PipeOperationState.cs" />
+        <Compile Include="System.IO.Pipelines\PipeOptions.cs" />
+        <Compile Include="System.IO.Pipelines\PipeReader.cs" />
+        <Compile Include="System.IO.Pipelines\PipeReaderStream.cs" />
+        <Compile Include="System.IO.Pipelines\PipeScheduler.cs" />
+        <Compile Include="System.IO.Pipelines\PipeWriter.cs" />
+        <Compile Include="System.IO.Pipelines\PipeWriterStream.cs" />
+        <Compile Include="System.IO.Pipelines\ReadResult.cs" />
+        <Compile Include="System.IO.Pipelines\ResultFlags.cs" />
+        <Compile Include="System.IO.Pipelines\StreamExtensions.cs" />
+        <Compile Include="System.IO.Pipelines\StreamPipeExtensions.cs" />
+        <Compile Include="System.IO.Pipelines\StreamPipeReader.cs" />
+        <Compile Include="System.IO.Pipelines\StreamPipeReaderOptions.cs" />
+        <Compile Include="System.IO.Pipelines\StreamPipeWriter.cs" />
+        <Compile Include="System.IO.Pipelines\StreamPipeWriterOptions.cs" />
+        <Compile Include="System.IO.Pipelines\ThreadPoolScheduler.cs" />
+        <Compile Include="System.IO.Pipelines\ThrowHelper.cs" />
+        <Compile Include="System.Threading.Tasks\TaskToApm.cs" />
+        <Compile Include="System.Threading\CancellationTokenExtensions.cs" />
+        <Compile Include="System\SR.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Net40.System.IO.Pipelines.Resources.Strings.resx" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Net40.System.Private.CoreLib\src\Net40.System.Private.CoreLib\Net40.System.Private.CoreLib.csproj">
+        <Project>{0be8ac03-9637-4be1-8552-086be1bde21a}</Project>
+        <Name>Net40.System.Private.CoreLib</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\..\..\Net40.Theraot.Core\src\Net40.Theraot.Core\Net40.Theraot.Core.csproj">
+        <Project>{868d7589-87b6-47ad-8cc6-e4f856199ff2}</Project>
+        <Name>Net40.Theraot.Core</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

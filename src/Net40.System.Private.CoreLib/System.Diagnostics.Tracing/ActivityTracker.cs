@@ -121,7 +121,7 @@ internal class ActivityTracker
 			}
 		}
 
-		private unsafe static int AddIdToGuid(Guid* outPtr, int whereToAddId, uint id, bool overflow = false)
+		private static unsafe int AddIdToGuid(Guid* outPtr, int whereToAddId, uint id, bool overflow = false)
 		{
 			byte* ptr = (byte*)outPtr;
 			byte* endPtr = ptr + 12;
@@ -183,7 +183,7 @@ internal class ActivityTracker
 			return (int)(ptr - (byte*)outPtr);
 		}
 
-		private unsafe static void WriteNibble(ref byte* ptr, byte* endPtr, uint value)
+		private static unsafe void WriteNibble(ref byte* ptr, byte* endPtr, uint value)
 		{
 			Debug.Assert(value < 16);
 			Debug.Assert(ptr < endPtr);

@@ -1,6 +1,6 @@
 namespace System.Diagnostics.Tracing;
 
-internal enum EventProviderType
+public enum EventProviderType
 {
 	None,
 	ETW,

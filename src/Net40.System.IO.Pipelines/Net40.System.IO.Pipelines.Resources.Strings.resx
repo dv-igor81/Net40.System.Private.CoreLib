@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+<resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>1.3</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="WritingAfterCompleted" xml:space="preserve"><value>Запись не допускается после завершения записи.</value></data>
+  <data name="FlushCanceledOnPipeWriter" xml:space="preserve"><value>Flush был отменен для базового PipeWriter.</value></data>
+  <data name="ConcurrentOperationsNotSupported" xml:space="preserve"><value>Параллельное чтение или запись не поддерживаются.</value></data>
+  <data name="ReadingAfterCompleted" xml:space="preserve"><value>Чтение не допускается после завершения чтения.</value></data>
+  <data name="NoReadingOperationToComplete" xml:space="preserve"><value>Нет операции чтения для завершения.</value></data>
+  <data name="AdvanceToInvalidCursor" xml:space="preserve"><value>PipeReader уже прошел заданную позицию.</value></data>
+  <data name="GetResultBeforeCompleted" xml:space="preserve"><value>Невозможно получить результат, пока не завершится ожидание.</value></data>
+  <data name="ReaderAndWriterHasToBeCompleted" xml:space="preserve"><value>И читатель, и писатель должны быть завершены, чтобы иметь возможность сбросить канал.</value></data>
+  <data name="InvalidZeroByteRead" xml:space="preserve"><value>PipeReader вернул 0 байт, если ReadResult не был завершен или отменен.</value></data>
+  <data name="InvalidExaminedOrConsumedPosition" xml:space="preserve"><value>Исследуемая позиция должна быть больше или равна потребляемой позиции.</value></data>
+  <data name="InvalidExaminedPosition" xml:space="preserve"><value>Исследуемая позиция не может быть меньше ранее исследованной позиции.</value></data>
+  <data name="ReadingIsInProgress" xml:space="preserve"><value>Чтение уже идет.</value></data>
+  <data name="ReadCanceledOnPipeReader" xml:space="preserve"><value>Чтение было отменено в базовом PipeReader.</value></data>
+  </root>

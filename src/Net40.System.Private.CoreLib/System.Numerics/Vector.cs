@@ -137,7 +137,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 		}
 	}
 
-	private unsafe static int InitializeCount()
+	private static unsafe int InitializeCount()
 	{
 		VectorSizeHelper vectorSizeHelper = default(VectorSizeHelper);
 		byte* ptr = &vectorSizeHelper._placeholder.register.byte_0;
@@ -1373,7 +1373,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 		return stringBuilder.ToString();
 	}
 
-	public unsafe static Vector<T> operator +(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator +(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -1569,7 +1569,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 		return result;
 	}
 
-	public unsafe static Vector<T> operator -(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator -(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -1765,7 +1765,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 		return result;
 	}
 
-	public unsafe static Vector<T> operator *(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator *(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -2173,7 +2173,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 		return result;
 	}
 
-	public unsafe static Vector<T> operator /(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator /(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -2375,7 +2375,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<T> operator &(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator &(Vector<T> left, Vector<T> right)
 	{
 		Vector<T> result = default(Vector<T>);
 		if (Vector.IsHardwareAccelerated)
@@ -2397,7 +2397,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<T> operator |(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator |(Vector<T> left, Vector<T> right)
 	{
 		Vector<T> result = default(Vector<T>);
 		if (Vector.IsHardwareAccelerated)
@@ -2419,7 +2419,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<T> operator ^(Vector<T> left, Vector<T> right)
+	public static unsafe Vector<T> operator ^(Vector<T> left, Vector<T> right)
 	{
 		Vector<T> result = default(Vector<T>);
 		if (Vector.IsHardwareAccelerated)
@@ -2524,7 +2524,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 	[Intrinsic]
-	internal unsafe static Vector<T> Equals(Vector<T> left, Vector<T> right)
+	internal static unsafe Vector<T> Equals(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -2732,7 +2732,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 	[Intrinsic]
-	internal unsafe static Vector<T> LessThan(Vector<T> left, Vector<T> right)
+	internal static unsafe Vector<T> LessThan(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -2940,7 +2940,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 	[Intrinsic]
-	internal unsafe static Vector<T> GreaterThan(Vector<T> left, Vector<T> right)
+	internal static unsafe Vector<T> GreaterThan(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -3165,7 +3165,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	internal unsafe static Vector<T> Abs(Vector<T> value)
+	internal static unsafe Vector<T> Abs(Vector<T> value)
 	{
 		if (typeof(T) == typeof(byte))
 		{
@@ -3305,7 +3305,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	internal unsafe static Vector<T> Min(Vector<T> left, Vector<T> right)
+	internal static unsafe Vector<T> Min(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -3512,7 +3512,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	internal unsafe static Vector<T> Max(Vector<T> left, Vector<T> right)
+	internal static unsafe Vector<T> Max(Vector<T> left, Vector<T> right)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -3850,7 +3850,7 @@ public struct Vector<T> : IEquatable<Vector<T>>, IFormattable where T : struct
 	}
 
 	[Intrinsic]
-	internal unsafe static Vector<T> SquareRoot(Vector<T> value)
+	internal static unsafe Vector<T> SquareRoot(Vector<T> value)
 	{
 		if (Vector.IsHardwareAccelerated)
 		{
@@ -4493,7 +4493,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static void Widen(Vector<byte> source, out Vector<ushort> low, out Vector<ushort> high)
+	public static unsafe void Widen(Vector<byte> source, out Vector<ushort> low, out Vector<ushort> high)
 	{
 		int count = Vector<byte>.Count;
 		ushort* ptr = stackalloc ushort[count / 2];
@@ -4512,7 +4512,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static void Widen(Vector<ushort> source, out Vector<uint> low, out Vector<uint> high)
+	public static unsafe void Widen(Vector<ushort> source, out Vector<uint> low, out Vector<uint> high)
 	{
 		int count = Vector<ushort>.Count;
 		uint* ptr = stackalloc uint[count / 2];
@@ -4531,7 +4531,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static void Widen(Vector<uint> source, out Vector<ulong> low, out Vector<ulong> high)
+	public static unsafe void Widen(Vector<uint> source, out Vector<ulong> low, out Vector<ulong> high)
 	{
 		int count = Vector<uint>.Count;
 		ulong* ptr = stackalloc ulong[count / 2];
@@ -4550,7 +4550,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static void Widen(Vector<sbyte> source, out Vector<short> low, out Vector<short> high)
+	public static unsafe void Widen(Vector<sbyte> source, out Vector<short> low, out Vector<short> high)
 	{
 		int count = Vector<sbyte>.Count;
 		short* ptr = stackalloc short[count / 2];
@@ -4568,7 +4568,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static void Widen(Vector<short> source, out Vector<int> low, out Vector<int> high)
+	public static unsafe void Widen(Vector<short> source, out Vector<int> low, out Vector<int> high)
 	{
 		int count = Vector<short>.Count;
 		int* ptr = stackalloc int[count / 2];
@@ -4586,7 +4586,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static void Widen(Vector<int> source, out Vector<long> low, out Vector<long> high)
+	public static unsafe void Widen(Vector<int> source, out Vector<long> low, out Vector<long> high)
 	{
 		int count = Vector<int>.Count;
 		long* ptr = stackalloc long[count / 2];
@@ -4604,7 +4604,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static void Widen(Vector<float> source, out Vector<double> low, out Vector<double> high)
+	public static unsafe void Widen(Vector<float> source, out Vector<double> low, out Vector<double> high)
 	{
 		int count = Vector<float>.Count;
 		double* ptr = stackalloc double[count / 2];
@@ -4623,7 +4623,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<byte> Narrow(Vector<ushort> low, Vector<ushort> high)
+	public static unsafe Vector<byte> Narrow(Vector<ushort> low, Vector<ushort> high)
 	{
 		int count = Vector<byte>.Count;
 		byte* ptr = stackalloc byte[(int)(uint)count];
@@ -4640,7 +4640,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<ushort> Narrow(Vector<uint> low, Vector<uint> high)
+	public static unsafe Vector<ushort> Narrow(Vector<uint> low, Vector<uint> high)
 	{
 		int count = Vector<ushort>.Count;
 		ushort* ptr = stackalloc ushort[count];
@@ -4657,7 +4657,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<uint> Narrow(Vector<ulong> low, Vector<ulong> high)
+	public static unsafe Vector<uint> Narrow(Vector<ulong> low, Vector<ulong> high)
 	{
 		int count = Vector<uint>.Count;
 		uint* ptr = stackalloc uint[count];
@@ -4674,7 +4674,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<sbyte> Narrow(Vector<short> low, Vector<short> high)
+	public static unsafe Vector<sbyte> Narrow(Vector<short> low, Vector<short> high)
 	{
 		int count = Vector<sbyte>.Count;
 		sbyte* ptr = stackalloc sbyte[(int)(uint)count];
@@ -4690,7 +4690,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<short> Narrow(Vector<int> low, Vector<int> high)
+	public static unsafe Vector<short> Narrow(Vector<int> low, Vector<int> high)
 	{
 		int count = Vector<short>.Count;
 		short* ptr = stackalloc short[count];
@@ -4706,7 +4706,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<int> Narrow(Vector<long> low, Vector<long> high)
+	public static unsafe Vector<int> Narrow(Vector<long> low, Vector<long> high)
 	{
 		int count = Vector<int>.Count;
 		int* ptr = stackalloc int[count];
@@ -4722,7 +4722,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<float> Narrow(Vector<double> low, Vector<double> high)
+	public static unsafe Vector<float> Narrow(Vector<double> low, Vector<double> high)
 	{
 		int count = Vector<float>.Count;
 		float* ptr = stackalloc float[count];
@@ -4738,7 +4738,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<float> ConvertToSingle(Vector<int> value)
+	public static unsafe Vector<float> ConvertToSingle(Vector<int> value)
 	{
 		int count = Vector<float>.Count;
 		float* ptr = stackalloc float[count];
@@ -4751,7 +4751,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<float> ConvertToSingle(Vector<uint> value)
+	public static unsafe Vector<float> ConvertToSingle(Vector<uint> value)
 	{
 		int count = Vector<float>.Count;
 		float* ptr = stackalloc float[count];
@@ -4763,7 +4763,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<double> ConvertToDouble(Vector<long> value)
+	public static unsafe Vector<double> ConvertToDouble(Vector<long> value)
 	{
 		int count = Vector<double>.Count;
 		double* ptr = stackalloc double[count];
@@ -4776,7 +4776,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<double> ConvertToDouble(Vector<ulong> value)
+	public static unsafe Vector<double> ConvertToDouble(Vector<ulong> value)
 	{
 		int count = Vector<double>.Count;
 		double* ptr = stackalloc double[count];
@@ -4788,7 +4788,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<int> ConvertToInt32(Vector<float> value)
+	public static unsafe Vector<int> ConvertToInt32(Vector<float> value)
 	{
 		int count = Vector<int>.Count;
 		int* ptr = stackalloc int[count];
@@ -4801,7 +4801,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<uint> ConvertToUInt32(Vector<float> value)
+	public static unsafe Vector<uint> ConvertToUInt32(Vector<float> value)
 	{
 		int count = Vector<uint>.Count;
 		uint* ptr = stackalloc uint[count];
@@ -4813,7 +4813,7 @@ public static class Vector
 	}
 
 	[Intrinsic]
-	public unsafe static Vector<long> ConvertToInt64(Vector<double> value)
+	public static unsafe Vector<long> ConvertToInt64(Vector<double> value)
 	{
 		int count = Vector<long>.Count;
 		long* ptr = stackalloc long[count];
@@ -4826,7 +4826,7 @@ public static class Vector
 
 	[CLSCompliant(false)]
 	[Intrinsic]
-	public unsafe static Vector<ulong> ConvertToUInt64(Vector<double> value)
+	public static unsafe Vector<ulong> ConvertToUInt64(Vector<double> value)
 	{
 		int count = Vector<ulong>.Count;
 		ulong* ptr = stackalloc ulong[count];

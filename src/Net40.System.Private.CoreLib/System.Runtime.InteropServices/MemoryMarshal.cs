@@ -6,6 +6,19 @@ namespace System.Runtime.InteropServices;
 
 public static class MemoryMarshal
 {
+	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+	public static ReadOnlySpan<T> CreateReadOnlySpan<T>(ref T reference, int length)
+	{
+		return new ReadOnlySpan<T>(ref reference, length);
+	}
+	
+	
+	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+	public static Span<T> CreateSpan<T>(ref T reference, int length)
+	{
+		return new Span<T>(ref reference, length);
+	}
+	
 	public static bool TryGetArray<T>(ReadOnlyMemory<T> memory, out ArraySegment<T> segment)
 	{
 		int start;
@@ -184,8 +197,25 @@ public static class MemoryMarshal
 	{
 		return Unsafe.As<ReadOnlyMemory<T>, Memory<T>>(ref memory);
 	}
+	
+	/// <summary>
+	/// DIA-DEBUG. Функция не протестирована...
+	/// </summary>
+	/// <param name="span"></param>
+	/// <typeparam name="T"></typeparam>
+	/// <returns></returns>
+	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+	public static unsafe ref readonly T GetNonNullPinnableReference<T>(ReadOnlySpan<T> span)
+	{
+		if (span.Length == 0)
+		{
+			return ref Unsafe.AsRef<T>((void*)1);
+		}
+		return ref span.GetPinnableReference();
+	}
 
-	public unsafe static ref T GetReference<T>(Span<T> span)
+
+	public static unsafe ref T GetReference<T>(Span<T> span)
 	{
 		if (span.Pinnable == null)
 		{
@@ -194,7 +224,7 @@ public static class MemoryMarshal
 		return ref Unsafe.AddByteOffset(ref span.Pinnable.Data, span.ByteOffset);
 	}
 
-	public unsafe static ref T GetReference<T>(ReadOnlySpan<T> span)
+	public static unsafe ref T GetReference<T>(ReadOnlySpan<T> span)
 	{
 		if (span.Pinnable == null)
 		{

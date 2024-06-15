@@ -11,12 +11,12 @@ public static class StringSpanEx
 	{
 	}
 
-	public unsafe static string[] Split(this string self, char separator, StringSplitOptions options = StringSplitOptions.None)
+	public static unsafe string[] Split(this string self, char separator, StringSplitOptions options = StringSplitOptions.None)
 	{
 		return self.SplitInternal(new ReadOnlySpan<char>(Unsafe.AsPointer(ref separator), 1), int.MaxValue, options);
 	}
 
-	public unsafe static string[] Split(this string self, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
+	public static unsafe string[] Split(this string self, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
 	{
 		return self.SplitInternal(new ReadOnlySpan<char>(Unsafe.AsPointer(ref separator), 1), count, options);
 	}
@@ -123,7 +123,7 @@ public static class StringSpanEx
 		return array;
 	}
 
-	private unsafe static void MakeSeparatorList(this string self, ReadOnlySpan<char> separators, ref ValueListBuilder<int> sepListBuilder)
+	private static unsafe void MakeSeparatorList(this string self, ReadOnlySpan<char> separators, ref ValueListBuilder<int> sepListBuilder)
 	{
 		switch (separators.Length)
 		{
@@ -194,7 +194,7 @@ public static class StringSpanEx
 		}
 	}
 
-	private unsafe static void InitializeProbabilisticMap(uint* charMap, ReadOnlySpan<char> anyOf)
+	private static unsafe void InitializeProbabilisticMap(uint* charMap, ReadOnlySpan<char> anyOf)
 	{
 		bool flag = false;
 		for (int i = 0; i < anyOf.Length; i++)
@@ -217,12 +217,12 @@ public static class StringSpanEx
 		}
 	}
 
-	private unsafe static void SetCharBit(uint* charMap, byte value)
+	private static unsafe void SetCharBit(uint* charMap, byte value)
 	{
 		charMap[value & 7] |= (uint)(1 << (value >> 3));
 	}
 
-	private unsafe static bool IsCharBitSet(uint* charMap, byte value)
+	private static unsafe bool IsCharBitSet(uint* charMap, byte value)
 	{
 		return (charMap[value & 7] & (uint)(1 << (value >> 3))) != 0;
 	}

@@ -68,7 +68,224 @@ internal static class SpanHelpers
 
         return BinarySearch(ref MemoryMarshal.GetReference(span), span.Length, comparable);
     }
+    
+    
+    [MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+    public static unsafe bool Contains(ref char searchSpace, char value, int length)
+    {
+        fixed (char* ptr = &searchSpace)
+        {
+            char* ptr2 = ptr;
+            char* ptr3 = ptr2 + length;
+            if (Vector.IsHardwareAccelerated && length >= Vector<ushort>.Count * 2)
+            {
+                int num = ((int)ptr2 & (Unsafe.SizeOf<Vector<ushort>>() - 1)) / 2;
+                length = (Vector<ushort>.Count - num) & (Vector<ushort>.Count - 1);
+            }
+            while (true)
+            {
+                if (length >= 4)
+                {
+                    length -= 4;
+                    if (value == *ptr2 || value == ptr2[1] || value == ptr2[2] || value == ptr2[3])
+                    {
+                        break;
+                    }
+                    ptr2 += 4;
+                    continue;
+                }
+                while (length > 0)
+                {
+                    length--;
+                    if (value == *ptr2)
+                    {
+                        goto end_IL_0079;
+                    }
+                    ptr2++;
+                }
+                if (Vector.IsHardwareAccelerated && ptr2 < ptr3)
+                {
+                    length = (int)((ptr3 - ptr2) & ~(Vector<ushort>.Count - 1));
+                    Vector<ushort> left = new Vector<ushort>(value);
+                    while (length > 0)
+                    {
+                        Vector<ushort> other = Vector.Equals(left, Unsafe.Read<Vector<ushort>>(ptr2));
+                        if (!Vector<ushort>.Zero.Equals(other))
+                        {
+                            goto end_IL_0079;
+                        }
+                        ptr2 += Vector<ushort>.Count;
+                        length -= Vector<ushort>.Count;
+                    }
+                    if (ptr2 < ptr3)
+                    {
+                        length = (int)(ptr3 - ptr2);
+                        continue;
+                    }
+                }
+                return false;
+                continue;
+                end_IL_0079:
+                break;
+            }
+            return true;
+        }
+    }
 
+    [MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+    public static unsafe bool Contains(ref byte searchSpace, byte value, int length)
+    {
+        IntPtr intPtr = (IntPtr)0;
+        IntPtr intPtr2 = (IntPtr)length;
+        if (Vector.IsHardwareAccelerated && length >= Vector<byte>.Count * 2)
+        {
+            intPtr2 = UnalignedCountVector(ref searchSpace);
+        }
+
+        while (true)
+        {
+            if ((nuint)(void*)intPtr2 >= (nuint)8u)
+            {
+                intPtr2 -= 8;
+                if (value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 0) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 1) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 2) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 3) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 4) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 5) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 6) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 7))
+                {
+                    break;
+                }
+
+                intPtr += 8;
+                continue;
+            }
+
+            if ((nuint)(void*)intPtr2 >= (nuint)4u)
+            {
+                intPtr2 -= 4;
+                if (value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 0) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 1) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 2) ||
+                    value == Unsafe.AddByteOffset(ref searchSpace, intPtr + 3))
+                {
+                    break;
+                }
+
+                intPtr += 4;
+            }
+
+            while ((void*)intPtr2 != null)
+            {
+                intPtr2 -= 1;
+                if (value == Unsafe.AddByteOffset(ref searchSpace, intPtr))
+                {
+                    goto end_IL_00e3;
+                }
+
+                intPtr += 1;
+            }
+
+            if (Vector.IsHardwareAccelerated && (int)(void*)intPtr < length)
+            {
+                intPtr2 = (IntPtr)((length - (int)(void*)intPtr) & ~(Vector<byte>.Count - 1));
+                Vector<byte> left = new Vector<byte>(value);
+                for (; (void*)intPtr2 > (void*)intPtr; intPtr += Vector<byte>.Count)
+                {
+                    Vector<byte> other = Vector.Equals(left, LoadVector(ref searchSpace, intPtr));
+                    if (!Vector<byte>.Zero.Equals(other))
+                    {
+                        goto end_IL_00e3;
+                    }
+                }
+
+                if ((int)(void*)intPtr < length)
+                {
+                    intPtr2 = (IntPtr)(length - (int)(void*)intPtr);
+                    continue;
+                }
+            }
+
+            return false;
+            continue;
+            end_IL_00e3:
+            break;
+        }
+
+        return true;
+    }
+    
+    public static unsafe bool Contains<T>(ref T searchSpace, T value, int length) where T : IEquatable<T>
+    {
+        IntPtr intPtr = (IntPtr)0;
+        if (default(T) != null || value != null)
+        {
+            while (length >= 8)
+            {
+                length -= 8;
+                if (!value.Equals(Unsafe.Add(ref searchSpace, intPtr + 0)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 1)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 2)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 3)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 4)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 5)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 6)) && !value.Equals(Unsafe.Add(ref searchSpace, intPtr + 7)))
+                {
+                    intPtr += 8;
+                    continue;
+                }
+                goto IL_0262;
+            }
+            if (length >= 4)
+            {
+                length -= 4;
+                if (value.Equals(Unsafe.Add(ref searchSpace, intPtr + 0)) || value.Equals(Unsafe.Add(ref searchSpace, intPtr + 1)) || value.Equals(Unsafe.Add(ref searchSpace, intPtr + 2)) || value.Equals(Unsafe.Add(ref searchSpace, intPtr + 3)))
+                {
+                    goto IL_0262;
+                }
+                intPtr += 4;
+            }
+            while (length > 0)
+            {
+                length--;
+                if (!value.Equals(Unsafe.Add(ref searchSpace, intPtr)))
+                {
+                    intPtr += 1;
+                    continue;
+                }
+                goto IL_0262;
+            }
+        }
+        else
+        {
+            byte* ptr = (byte*)length;
+            intPtr = (IntPtr)0;
+            while (intPtr.ToPointer() < ptr)
+            {
+                if (Unsafe.Add(ref searchSpace, intPtr) != null)
+                {
+                    intPtr += 1;
+                    continue;
+                }
+                goto IL_0262;
+            }
+        }
+        return false;
+        IL_0262:
+        return true;
+    }
+    
+
+    [MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+    private static Vector<byte> LoadVector(ref byte start, IntPtr offset)
+    {
+        return Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref start, offset));
+    }
+    
+    [MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+    private static unsafe IntPtr UnalignedCountVector(ref byte searchSpace)
+    {
+        int num = (int)Unsafe.AsPointer(ref searchSpace) & (Vector<byte>.Count - 1);
+        return (IntPtr)((Vector<byte>.Count - num) & (Vector<byte>.Count - 1));
+    }
+
+    
     // ReSharper disable once MemberCanBePrivate.Global
     public static int BinarySearch<T, TComparable>(ref T spanStart, int length, TComparable comparable)
         where TComparable : IComparable<T>
@@ -2568,7 +2785,7 @@ internal static class SpanHelpers
         }
     }
 
-    public unsafe static void ClearLessThanPointerSized(ref byte b, UIntPtr byteLength)
+    public static unsafe void ClearLessThanPointerSized(ref byte b, UIntPtr byteLength)
     {
         if (sizeof(UIntPtr) == 4)
         {
@@ -2663,7 +2880,7 @@ internal static class SpanHelpers
     }
 
     [MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-    private unsafe static bool LessThanEqual(this IntPtr index, UIntPtr length)
+    private static unsafe bool LessThanEqual(this IntPtr index, UIntPtr length)
     {
         if (sizeof(UIntPtr) != 4)
         {

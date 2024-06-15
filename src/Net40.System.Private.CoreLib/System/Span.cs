@@ -177,6 +177,25 @@ public readonly ref struct Span<T>
 		_pinnable = Unsafe.As<Pinnable<T>>(array);
 		_byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
 	}
+	
+	
+	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
+	internal Span(ref T ptr, int length)
+	{
+		if (SpanHelpers.IsReferenceOrContainsReferences<T>())
+		{
+		}
+		if (length < 0)
+		{
+			ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
+		}
+		unsafe
+		{
+			_byteOffset = new IntPtr(Unsafe.AsPointer(ref ptr));
+		}
+		_length = length;
+	}
+
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 	[CLSCompliant(false)]
@@ -301,21 +320,46 @@ public readonly ref struct Span<T>
 			ThrowHelper.ThrowArgumentException_DestinationTooShort();
 		}
 	}
-
-	public bool TryCopyTo(Span<T> destination)
+	
+	public void CopyFrom(T[] source)
 	{
-		int length = _length;
-		int length2 = destination._length;
-		if (length == 0)
+		if (!TryCopyFrom(source))
+		{
+			ThrowHelper.ThrowArgumentException_DestinationTooShort();
+		}
+	}
+	
+	public bool TryCopyFrom(T[] source)
+	{
+		int selfLength = _length;
+		int srcLength = source.Length;
+		if (selfLength == 0)
 		{
 			return true;
 		}
-		if ((uint)length > (uint)length2)
+		if ((uint)selfLength < (uint)srcLength)
+		{
+			return false;
+		}
+		ref T dest = ref DangerousGetPinnableReference();
+		SpanHelpers.CopyTo(ref dest, selfLength, ref source.AsSpan().DangerousGetPinnableReference(), srcLength);
+		return true;
+	}
+
+	public bool TryCopyTo(Span<T> destination)
+	{
+		int selfLength = _length;
+		int destLength = destination._length;
+		if (selfLength == 0)
+		{
+			return true;
+		}
+		if ((uint)selfLength > (uint)destLength)
 		{
 			return false;
 		}
 		ref T src = ref DangerousGetPinnableReference();
-		SpanHelpers.CopyTo(ref destination.DangerousGetPinnableReference(), length2, ref src, length);
+		SpanHelpers.CopyTo(ref destination.DangerousGetPinnableReference(), destLength, ref src, selfLength);
 		return true;
 	}
 
@@ -333,7 +377,7 @@ public readonly ref struct Span<T>
 		return new ReadOnlySpan<T>(span._pinnable, span._byteOffset, span._length);
 	}
 
-	public unsafe override string ToString()
+	public override unsafe string ToString()
 	{
 		if (typeof(T) == typeof(char))
 		{

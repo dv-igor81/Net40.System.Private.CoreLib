@@ -112,7 +112,7 @@ public readonly struct StandardFormat : IEquatable<StandardFormat>
 		return false;
 	}
 
-	public unsafe override string ToString()
+	public override unsafe string ToString()
 	{
 		char* ptr = stackalloc char[4];
 		int length = 0;

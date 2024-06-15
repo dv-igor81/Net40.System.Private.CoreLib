@@ -61,7 +61,7 @@ internal class ConstantHelper
 	}
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-	public unsafe static float GetSingleWithAllBitsSet()
+	public static unsafe float GetSingleWithAllBitsSet()
 	{
 		float result = 0f;
 		*(int*)(&result) = -1;
@@ -69,7 +69,7 @@ internal class ConstantHelper
 	}
 
 	[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
-	public unsafe static double GetDoubleWithAllBitsSet()
+	public static unsafe double GetDoubleWithAllBitsSet()
 	{
 		double result = 0.0;
 		*(long*)(&result) = -1L;

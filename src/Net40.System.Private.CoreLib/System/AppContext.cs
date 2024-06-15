@@ -33,7 +33,7 @@ public static class AppContext
 
 	public static event EventHandler? ProcessExit;
 
-	internal unsafe static void Setup(char** pNames, char** pValues, int count)
+	internal static unsafe void Setup(char** pNames, char** pValues, int count)
 	{
 		for (int i = 0; i < count; i++)
 		{

@@ -15,17 +15,19 @@ public ref struct SequenceReader<T> where T : unmanaged, IEquatable<T>
 
 	private long _length;
 
+	// ReSharper disable once MemberCanBePrivate.Global
 	public bool End => !_moreData;
 
+	// ReSharper disable once MemberCanBePrivate.Global
 	public ReadOnlySequence<T> Sequence { get; }
 
-	private SequencePosition Position => Sequence.GetPosition(CurrentSpanIndex, _currentPosition);
+	public SequencePosition Position => Sequence.GetPosition(CurrentSpanIndex, _currentPosition);
 
 	private ReadOnlySpan<T> CurrentSpan { get; set; }
 
 	private int CurrentSpanIndex { get; set; }
 
-	private ReadOnlySpan<T> UnreadSpan
+	public ReadOnlySpan<T> UnreadSpan
 	{
 		[MethodImpl(MethodImplOptionsEx.AggressiveInlining)]
 		get => CurrentSpan.Slice(CurrentSpanIndex);

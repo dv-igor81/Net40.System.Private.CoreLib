@@ -1,4 +1,3 @@
-#define DEBUG
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System.IO;
 
-public class MemoryStreamEx : Stream
+public class MemoryStreamEx : MemoryStream
 {
 	private byte[] _buffer;
 

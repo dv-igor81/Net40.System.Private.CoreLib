@@ -96,7 +96,7 @@ internal sealed class ScalarArrayTypeInfo : System.Diagnostics.Tracing.TraceLogg
 		return new ScalarArrayTypeInfo(typeof(double[]), System.Diagnostics.Tracing.Statics.Format64, System.Diagnostics.Tracing.TraceLoggingDataType.Double, 8);
 	}
 
-	public unsafe static System.Diagnostics.Tracing.TraceLoggingTypeInfo Guid()
+	public static unsafe System.Diagnostics.Tracing.TraceLoggingTypeInfo Guid()
 	{
 		return new ScalarArrayTypeInfo(typeof(Guid), (EventFieldFormat f, System.Diagnostics.Tracing.TraceLoggingDataType t) => System.Diagnostics.Tracing.Statics.MakeDataType(System.Diagnostics.Tracing.TraceLoggingDataType.Guid, f), System.Diagnostics.Tracing.TraceLoggingDataType.Guid, sizeof(Guid));
 	}

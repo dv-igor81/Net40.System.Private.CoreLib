@@ -5,7 +5,9 @@ namespace System.Diagnostics.Tracing;
 
 public class TraceLoggingEventTypes
 {
-	internal readonly System.Diagnostics.Tracing.TraceLoggingTypeInfo[] typeInfos;
+	internal readonly TraceLoggingTypeInfo[] typeInfos;
+
+	internal readonly string[] paramNames;
 
 	internal readonly string name;
 
@@ -25,7 +27,7 @@ public class TraceLoggingEventTypes
 
 	internal readonly int pinCount;
 
-	private System.Diagnostics.Tracing.ConcurrentSet<KeyValuePair<string, EventTags>, System.Diagnostics.Tracing.NameInfo> nameInfos;
+	private ConcurrentSet<KeyValuePair<string, EventTags>, NameInfo> nameInfos;
 
 	internal string Name => name;
 
@@ -42,7 +44,7 @@ public class TraceLoggingEventTypes
 	{
 	}
 
-	internal TraceLoggingEventTypes(string name, EventTags tags, params System.Diagnostics.Tracing.TraceLoggingTypeInfo[] typeInfos)
+	internal TraceLoggingEventTypes(string name, EventTags tags, params TraceLoggingTypeInfo[] typeInfos)
 		: this(tags, name, MakeArray(typeInfos))
 	{
 	}
@@ -54,30 +56,31 @@ public class TraceLoggingEventTypes
 			throw new ArgumentNullException("name");
 		}
 		typeInfos = MakeArray(paramInfos);
+		paramNames = MakeParamNameArray(paramInfos);
 		this.name = name;
 		this.tags = tags;
 		level = 5;
-		System.Diagnostics.Tracing.TraceLoggingMetadataCollector collector = new System.Diagnostics.Tracing.TraceLoggingMetadataCollector();
+		TraceLoggingMetadataCollector traceLoggingMetadataCollector = new TraceLoggingMetadataCollector();
 		for (int i = 0; i < typeInfos.Length; i++)
 		{
-			System.Diagnostics.Tracing.TraceLoggingTypeInfo typeInfo = typeInfos[i];
-			level = System.Diagnostics.Tracing.Statics.Combine((int)typeInfo.Level, level);
-			opcode = System.Diagnostics.Tracing.Statics.Combine((int)typeInfo.Opcode, opcode);
-			keywords |= typeInfo.Keywords;
-			string paramName = paramInfos[i].Name;
-			if (System.Diagnostics.Tracing.Statics.ShouldOverrideFieldName(paramName))
+			TraceLoggingTypeInfo traceLoggingTypeInfo = typeInfos[i];
+			level = Statics.Combine((int)traceLoggingTypeInfo.Level, level);
+			opcode = Statics.Combine((int)traceLoggingTypeInfo.Opcode, opcode);
+			keywords |= traceLoggingTypeInfo.Keywords;
+			string fieldName = paramInfos[i].Name;
+			if (Statics.ShouldOverrideFieldName(fieldName))
 			{
-				paramName = typeInfo.Name;
+				fieldName = traceLoggingTypeInfo.Name;
 			}
-			typeInfo.WriteMetadata(collector, paramName, EventFieldFormat.Default);
+			traceLoggingTypeInfo.WriteMetadata(traceLoggingMetadataCollector, fieldName, EventFieldFormat.Default);
 		}
-		typeMetadata = collector.GetMetadata();
-		scratchSize = collector.ScratchSize;
-		dataCount = collector.DataCount;
-		pinCount = collector.PinCount;
+		typeMetadata = traceLoggingMetadataCollector.GetMetadata();
+		scratchSize = traceLoggingMetadataCollector.ScratchSize;
+		dataCount = traceLoggingMetadataCollector.DataCount;
+		pinCount = traceLoggingMetadataCollector.PinCount;
 	}
 
-	private TraceLoggingEventTypes(EventTags tags, string defaultName, System.Diagnostics.Tracing.TraceLoggingTypeInfo[] typeInfos)
+	private TraceLoggingEventTypes(EventTags tags, string defaultName, TraceLoggingTypeInfo[] typeInfos)
 	{
 		if (defaultName == null)
 		{
@@ -87,66 +90,77 @@ public class TraceLoggingEventTypes
 		name = defaultName;
 		this.tags = tags;
 		level = 5;
-		System.Diagnostics.Tracing.TraceLoggingMetadataCollector collector = new System.Diagnostics.Tracing.TraceLoggingMetadataCollector();
-		foreach (System.Diagnostics.Tracing.TraceLoggingTypeInfo typeInfo in typeInfos)
+		TraceLoggingMetadataCollector traceLoggingMetadataCollector = new TraceLoggingMetadataCollector();
+		foreach (TraceLoggingTypeInfo traceLoggingTypeInfo in typeInfos)
 		{
-			level = System.Diagnostics.Tracing.Statics.Combine((int)typeInfo.Level, level);
-			opcode = System.Diagnostics.Tracing.Statics.Combine((int)typeInfo.Opcode, opcode);
-			keywords |= typeInfo.Keywords;
-			typeInfo.WriteMetadata(collector, null, EventFieldFormat.Default);
+			level = Statics.Combine((int)traceLoggingTypeInfo.Level, level);
+			opcode = Statics.Combine((int)traceLoggingTypeInfo.Opcode, opcode);
+			keywords |= traceLoggingTypeInfo.Keywords;
+			traceLoggingTypeInfo.WriteMetadata(traceLoggingMetadataCollector, null, EventFieldFormat.Default);
 		}
-		typeMetadata = collector.GetMetadata();
-		scratchSize = collector.ScratchSize;
-		dataCount = collector.DataCount;
-		pinCount = collector.PinCount;
+		typeMetadata = traceLoggingMetadataCollector.GetMetadata();
+		scratchSize = traceLoggingMetadataCollector.ScratchSize;
+		dataCount = traceLoggingMetadataCollector.DataCount;
+		pinCount = traceLoggingMetadataCollector.PinCount;
 	}
 
-	internal System.Diagnostics.Tracing.NameInfo GetNameInfo(string name, EventTags tags)
+	internal NameInfo GetNameInfo(string name, EventTags tags)
 	{
-		System.Diagnostics.Tracing.NameInfo ret = nameInfos.TryGet(new KeyValuePair<string, EventTags>(name, tags));
-		if (ret == null)
+		NameInfo nameInfo = nameInfos.TryGet(new KeyValuePair<string, EventTags>(name, tags));
+		if (nameInfo == null)
 		{
-			ret = nameInfos.GetOrAdd(new System.Diagnostics.Tracing.NameInfo(name, tags, typeMetadata.Length));
+			nameInfo = nameInfos.GetOrAdd(new NameInfo(name, tags, typeMetadata.Length));
 		}
-		return ret;
+		return nameInfo;
 	}
 
-	private System.Diagnostics.Tracing.TraceLoggingTypeInfo[] MakeArray(ParameterInfo[] paramInfos)
+	private TraceLoggingTypeInfo[] MakeArray(ParameterInfo[] paramInfos)
 	{
 		if (paramInfos == null)
 		{
 			throw new ArgumentNullException("paramInfos");
 		}
 		List<Type> recursionCheck = new List<Type>(paramInfos.Length);
-		System.Diagnostics.Tracing.TraceLoggingTypeInfo[] result = new System.Diagnostics.Tracing.TraceLoggingTypeInfo[paramInfos.Length];
+		TraceLoggingTypeInfo[] array = new TraceLoggingTypeInfo[paramInfos.Length];
 		for (int i = 0; i < paramInfos.Length; i++)
 		{
-			result[i] = System.Diagnostics.Tracing.TraceLoggingTypeInfo.GetInstance(paramInfos[i].ParameterType, recursionCheck);
+			array[i] = TraceLoggingTypeInfo.GetInstance(paramInfos[i].ParameterType, recursionCheck);
 		}
-		return result;
+		return array;
 	}
 
-	private static System.Diagnostics.Tracing.TraceLoggingTypeInfo[] MakeArray(Type[] types)
+	private static TraceLoggingTypeInfo[] MakeArray(Type[] types)
 	{
 		if (types == null)
 		{
 			throw new ArgumentNullException("types");
 		}
 		List<Type> recursionCheck = new List<Type>(types.Length);
-		System.Diagnostics.Tracing.TraceLoggingTypeInfo[] result = new System.Diagnostics.Tracing.TraceLoggingTypeInfo[types.Length];
+		TraceLoggingTypeInfo[] array = new TraceLoggingTypeInfo[types.Length];
 		for (int i = 0; i < types.Length; i++)
 		{
-			result[i] = System.Diagnostics.Tracing.TraceLoggingTypeInfo.GetInstance(types[i], recursionCheck);
+			array[i] = TraceLoggingTypeInfo.GetInstance(types[i], recursionCheck);
 		}
-		return result;
+		return array;
 	}
 
-	private static System.Diagnostics.Tracing.TraceLoggingTypeInfo[] MakeArray(System.Diagnostics.Tracing.TraceLoggingTypeInfo[] typeInfos)
+	private static TraceLoggingTypeInfo[] MakeArray(TraceLoggingTypeInfo[] typeInfos)
 	{
 		if (typeInfos == null)
 		{
 			throw new ArgumentNullException("typeInfos");
 		}
-		return (System.Diagnostics.Tracing.TraceLoggingTypeInfo[])typeInfos.Clone();
+		return (TraceLoggingTypeInfo[])typeInfos.Clone();
+	}
+
+	private static string[] MakeParamNameArray(ParameterInfo[] paramInfos)
+	{
+		string[] array = new string[paramInfos.Length];
+		for (int i = 0; i < array.Length; i++)
+		{
+			array[i] = paramInfos[i].Name;
+		}
+		return array;
 	}
 }
+
